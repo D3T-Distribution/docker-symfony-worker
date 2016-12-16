@@ -10,8 +10,6 @@ RUN sed -e 's/;date\.timezone =/date\.timezone = Europe\/Paris/' -i /etc/php/7.0
 
 ADD supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
-RUN usermod -u 1000 www-data
-
 VOLUME /var/www
 WORKDIR /var/www
 

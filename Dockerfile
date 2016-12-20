@@ -14,9 +14,5 @@ RUN apt-get update -qq && apt-get install -y -qq libxrender1
 # Configure runner
 RUN sed -e 's/;date\.timezone =/date\.timezone = Europe\/Paris/' -i /etc/php/7.0/cli/php.ini 
 
-ADD supervisor/supervisord.conf /etc/supervisor/supervisord.conf
-
 VOLUME /var/www
-WORKDIR /var/www
-
-CMD ["/usr/bin/supervisord"]
+WORKDIR /var/www/current

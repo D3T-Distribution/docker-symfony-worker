@@ -14,7 +14,10 @@ RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkh
  rm wkhtmltox-0.12.3_linux-generic-amd64.tar.xz
 
 # Configure runner
-RUN sed -e 's/;date\.timezone =/date\.timezone = Europe\/Paris/' -i /etc/php/7.1/cli/php.ini 
+RUN sed -e 's/;date\.timezone =/date\.timezone = Europe\/Paris/' -i /etc/php/7.1/cli/php.ini
+
+# Remove expired Root CA
+RUN sed -i '/mozilla\/AddTrust_External_Root.crt/c\!mozilla\/AddTrust_External_Root.crt' /etc/ca-certificates.conf && update-ca-certificates
 
 VOLUME /var/www
 WORKDIR /var/www/current

@@ -14,5 +14,10 @@ RUN apt-get update -qq && apt-get install -y -qq libxrender1
 # Configure runner
 RUN sed -e 's/;date\.timezone =/date\.timezone = Europe\/Paris/' -i /etc/php/7.0/cli/php.ini 
 
+# Configure ImageMagick
+RUN mv /etc/ImageMagick-6/policy.xml /tmp/policy.xml && cat /tmp/policy.xml | sed "s/none/read|write/" > /etc/ImageMagick-6/policy.xml
+
+
+
 VOLUME /var/www
 WORKDIR /var/www/current
